@@ -152,14 +152,14 @@ public class SimpleApp {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
     }
 
-    @ExceptionHandler(ConstraintViolationException .class)
+    @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<SimpleResponse> handleValidationError(ConstraintViolationException e) {
-      String msg = 
-        e.getConstraintViolations().stream()
-        .map(x -> x.getMessage())
-        .sorted()
-        .findFirst()
-        .orElse("잘못된 요청 입니다");
+      String msg =
+          e.getConstraintViolations().stream()
+              .map(x -> x.getMessage())
+              .sorted()
+              .findFirst()
+              .orElse("잘못된 요청 입니다");
 
       SimpleResponse res = new SimpleResponse(msg);
 
